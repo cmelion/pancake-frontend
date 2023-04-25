@@ -117,6 +117,13 @@ export const SwapLineChart: React.FC<SwapLineChartNewProps> = ({
       topColor: colors.gradient1,
       bottomColor: isDark ? "#3c3742" : "white",
     });
+    newSeries.applyOptions({
+      priceFormat: {
+        type: "price",
+        precision: 4,
+        minMove: 0.0001,
+      },
+    });
     setChart(chart);
     newSeries.setData(transformedData);
     if (priceLineData && priceLineData.length > 0)
