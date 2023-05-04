@@ -7,6 +7,7 @@ import { useMemo } from 'react'
 
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useProviderOrSigner } from 'hooks/useProviderOrSigner'
+import { Address } from 'viem'
 
 interface SwapCall {
   address: string
@@ -32,7 +33,7 @@ export function useSwapCallArguments(
   const { account, chainId } = useActiveWeb3React()
   const provider = useProviderOrSigner()
 
-  const recipient = recipientAddress === null ? account : recipientAddress
+  const recipient = recipientAddress === null ? account : (recipientAddress as Address)
 
   return useMemo(() => {
     if (!trade || !recipient || !provider || !account || !chainId) return []
